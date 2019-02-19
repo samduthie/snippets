@@ -1,0 +1,55 @@
+<html>
+
+
+
+<body>
+
+<p id="api-resp"></p>
+
+</body>
+</html>
+
+
+
+<script>
+
+url = 'http://127.0.0.1:5000/api'
+
+
+// sync get call
+get_api_data = function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+document.getElementById("api-resp").innerHTML = get_api_data()
+
+
+//---------------
+// async fetching
+//---------------
+// GET request
+fetch(url)
+  .then(response => response.json())
+  .then(json => console.log(json))
+
+
+// POST request
+var data = {"task": "example"};
+
+fetch(url, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({a: 1, b: 2})
+})
+.then(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) })
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
