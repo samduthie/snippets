@@ -1,0 +1,2 @@
+if you want compose to create a container and wait:
+	tail -f /dev/null
